@@ -7,12 +7,13 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "newsapi")
+@ConfigurationProperties(prefix = "papagoapi")
 @EnableConfigurationProperties
 @Setter
 @Getter
-public class NewsConfig {
+public class TranslatorConfig {
 
     private String key;
     private String url;
+    private String clientId;
 }
