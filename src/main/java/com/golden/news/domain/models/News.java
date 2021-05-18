@@ -1,18 +1,18 @@
 package com.golden.news.domain.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewsBody {
+public class News {
+
     @JsonProperty("status")
     private String status;
     @JsonProperty("totalResults")

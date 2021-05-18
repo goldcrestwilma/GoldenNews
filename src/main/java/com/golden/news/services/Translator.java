@@ -1,7 +1,7 @@
 package com.golden.news.services;
 
 import com.golden.news.config.TranslatorConfig;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -12,14 +12,10 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 @Service
+@RequiredArgsConstructor
 public class Translator {
 
     private final TranslatorConfig translatorConfig;
-
-    @Autowired
-    public Translator(TranslatorConfig translatorConfig) {
-        this.translatorConfig = translatorConfig;
-    }
 
     public void translate(String text) {
         RestTemplate restTemplate = new RestTemplate();

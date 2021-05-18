@@ -1,42 +1,43 @@
 package com.golden.news.services;
 
 import com.golden.news.config.NewsConfig;
-import com.golden.news.domain.models.Article;
-import com.golden.news.domain.models.NewsBody;
-import java.net.URI;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import com.golden.news.domain.models.News;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 public class TopNewsService {
 
+    private static final String DELIMITER = "|";
     private final NewsConfig newsConfig;
     private final Translator translator;
+    private final NewsClient newsClient;
 
     @Autowired
-    public TopNewsService(NewsConfig newsConfig, Translator translator) {
+    public TopNewsService(NewsConfig newsConfig, Translator translator, NewsClient newsClient) {
         this.newsConfig = newsConfig;
         this.translator = translator;
+        this.newsClient = newsClient;
     }
 
-    public NewsBody find() {
-        RestTemplate restTemplate = new RestTemplate();
-        URI url = URI.create(newsConfig.getUrl() + newsConfig.getKey());
-
-        Optional<NewsBody> newsBody = Optional
-            .ofNullable(restTemplate.getForObject(url, NewsBody.class));
-        List<Article> articleList = newsBody.map(NewsBody::getArticles)
+    public News find() {
+        /*
+        News news = newsClient.topHeadLine();
+        List<Article> articleList = news.map(News::getArticles)
             .orElse(Collections.emptyList());
 
-        articleList.forEach(a -> {
-            System.out.println(a.getContent());
-            translator.translate(a.getContent());
-        });
+        String articles = articleList
+            .stream()
+            .map(Article::getTitle)
+            .collect(Collectors.joining(DELIMITER));
 
-        return restTemplate.getForObject(url, NewsBody.class);
+
+        translator.translate(articles);
+
+        return news;
+
+         */
+
+        return newsClient.topHeadLine();
     }
 }
