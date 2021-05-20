@@ -3,6 +3,7 @@
 .idea
 
 /src/main/resources/application-news.yml
+/src/test/resources/application-news.yml
 
 build
 out
