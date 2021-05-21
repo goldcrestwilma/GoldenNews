@@ -2,8 +2,8 @@
 /.gradle/
 .idea
 
-/src/main/resources/application-news.yml
-/src/test/resources/application-news.yml
+/src/main/resources/application-*.yml
+/src/test/resources/application-*.yml
 
 build
 out

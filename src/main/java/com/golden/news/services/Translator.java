@@ -1,29 +1,31 @@
 package com.golden.news.services;
 
-import com.golden.news.config.TranslatorConfig;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 @RequiredArgsConstructor
 public class Translator {
 
-    private final TranslatorConfig translatorConfig;
+    //private final TranslatorConfig translatorConfig;
+    private final PapagoClient papagoClient;
 
     public void translate(String text) {
+        String params = "source=en&target=ko&text=" + text;
+        /*
+        Map<String, String> params =
+            params.put("source", "en");
+        params.put("target", "ko");
+        params.put("text", text);
+
+         */
+        ResponseEntity<String> response = papagoClient.translate(params);
+        System.out.println(response.getBody());
+
+        /*
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        params.add("source", "en");
-        params.add("target", "ko");
-        params.add("text", text);
 
         httpHeaders.add("X-Naver-Client-Id", translatorConfig.getClientId());
         httpHeaders.add("X-Naver-Client-Secret", translatorConfig.getKey());
@@ -35,6 +37,7 @@ public class Translator {
 
         System.out.println(response.getBody());
 
+         */
 
     }
 

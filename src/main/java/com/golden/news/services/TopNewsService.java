@@ -1,7 +1,10 @@
 package com.golden.news.services;
 
 import com.golden.news.config.NewsConfig;
+import com.golden.news.domain.models.Article;
 import com.golden.news.domain.models.News;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,23 +24,20 @@ public class TopNewsService {
     }
 
     public News find() {
-        /*
         News news = newsClient.topHeadLine();
-        List<Article> articleList = news.map(News::getArticles)
-            .orElse(Collections.emptyList());
+
+        List<Article> articleList = news.getArticles();
+        //.orElse(Collections.emptyList());
 
         String articles = articleList
             .stream()
             .map(Article::getTitle)
             .collect(Collectors.joining(DELIMITER));
 
-
         translator.translate(articles);
 
         return news;
 
-         */
-
-        return newsClient.topHeadLine();
+//        return newsClient.topHeadLine();
     }
 }
