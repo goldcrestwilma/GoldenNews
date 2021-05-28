@@ -1,13 +1,19 @@
 package com.golden.news.services;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.golden.news.domain.models.News;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 class NewsClientTest {
 
@@ -20,6 +26,7 @@ class NewsClientTest {
         News news = newsClient.topHeadLine();
 
         assertEquals("ok", news.getStatus());
+        assertThat(news, is(notNullValue()));
     }
 
 }
